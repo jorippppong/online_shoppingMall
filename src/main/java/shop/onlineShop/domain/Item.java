@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn
+@DiscriminatorColumn(name = "dtype")
 public abstract class Item extends BaseEntity{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ITEM_ID")

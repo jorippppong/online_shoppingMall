@@ -1,13 +1,14 @@
 package shop.onlineShop.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
 public class Category {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
@@ -20,8 +21,13 @@ public class Category {
     private Category parent;  //상위 category, 스스로 매핑
 
     @OneToMany(mappedBy = "parent")
-    private List<Category> categories = new ArrayList<>();
+    private List<Category> child = new ArrayList<>();
 
     @OneToMany(mappedBy = "category")
-    List<CategoryItem> categoryItems = new ArrayList<>();
+    private List<CategoryItem> categoryItems = new ArrayList<>();
+
+    public void addChildCategory(Category child){
+        this.child.add(child);
+        child.setParent(this);
+    }
 }

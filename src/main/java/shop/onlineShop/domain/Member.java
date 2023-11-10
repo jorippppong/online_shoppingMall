@@ -11,13 +11,13 @@ import java.util.List;
 @Getter @Setter
 public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MEMBER_ID")
+    @Column(name = "member_id")
     private Long id;
 
     private String name;
-    private String city;
-    private String street;
-    private String zipcode;
+
+    @Embedded
+    private Address address;
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();

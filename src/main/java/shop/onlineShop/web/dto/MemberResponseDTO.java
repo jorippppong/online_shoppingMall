@@ -1,7 +1,6 @@
 package shop.onlineShop.web.dto;
 
 import lombok.Builder;
-import shop.onlineShop.domain.Member;
 
 @Builder
 public class MemberResponseDTO {
@@ -9,4 +8,8 @@ public class MemberResponseDTO {
     private String city;
     private String street;
     private String zipcode;
+
+    public MemberResponseDTO(String name){
+        this.name = name;
+    }
 }

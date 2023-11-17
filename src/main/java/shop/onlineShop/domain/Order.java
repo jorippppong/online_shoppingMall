@@ -32,6 +32,9 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    public static Order createOrder(Member member, Delivery delivery, OrderItem orderItem1, OrderItem orderItem2) {
+    }
+
     public void setMember(Member member){
         this.member = member;
         member.getOrders().add(this);

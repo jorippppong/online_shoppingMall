@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shop.onlineShop.domain.Member;
 import shop.onlineShop.service.MemberService;
+import shop.onlineShop.web.dto.MemberAllResponseDTO;
 import shop.onlineShop.web.dto.MemberRequestDTO;
-import shop.onlineShop.web.dto.MemberResponseDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,8 +38,8 @@ public class MemberController {
     public ResponseEntity getAllMembers(){
         List<Member> findMembers = memberService.findMembers();
         //엔티티 -> DTO 변환
-        List<MemberResponseDTO> collect = findMembers.stream()
-                .map(m -> new MemberResponseDTO(m.getName()))
+        List<MemberAllResponseDTO> collect = findMembers.stream()
+                .map(m -> new MemberAllResponseDTO(m.getName()))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(collect, HttpStatus.OK); //TODO : 여기 name만 출력되는지 확인, 확인 후 convert로 이동해야함 (왜인지 다른 속성값들도 다 나올것 같은 이 기분)
     }

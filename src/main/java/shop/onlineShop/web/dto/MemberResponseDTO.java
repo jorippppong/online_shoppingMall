@@ -8,8 +8,4 @@ public class MemberResponseDTO {
     private String city;
     private String street;
     private String zipcode;
-
-    public MemberResponseDTO(String name){
-        this.name = name;
-    }
 }

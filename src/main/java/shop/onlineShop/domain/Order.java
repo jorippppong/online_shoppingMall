@@ -1,7 +1,6 @@
 package shop.onlineShop.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -32,7 +31,17 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    public static Order createOrder(Member member, Delivery delivery, OrderItem orderItem1, OrderItem orderItem2) {
+    //생성 method
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        for(OrderItem orderItem: orderItems){
+            order.addOrderItem(orderItem);
+        }
+        order.setStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return order;
     }
 
     public void setMember(Member member){
@@ -49,5 +58,4 @@ public class Order {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
-
 }

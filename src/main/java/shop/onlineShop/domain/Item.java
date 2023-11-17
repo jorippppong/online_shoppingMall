@@ -15,6 +15,10 @@ public abstract class Item extends BaseEntity{
     private Long id;
 
     private String name;
-    private int price;
+    private int price; //이거는 왜 필요 한거지..?
     private int stockQuantity;
+
+    //TODO : 제고 관리
+    public void removeStock(int count) {
+    }
 }

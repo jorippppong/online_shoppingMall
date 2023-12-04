@@ -49,7 +49,7 @@ public class MemberService{
     //2-2. 회원 전체 조회
     @Transactional(readOnly = true)
     public List<Member> findAllMembers(){
-        return memberRepository.findAll();
+        return memberRepository.findAll();ㅌ
     }
 
 

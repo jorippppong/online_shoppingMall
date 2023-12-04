@@ -1,5 +1,6 @@
 package shop.onlineShop.global.uniformApi;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 
@@ -11,6 +12,7 @@ public class ApiResponse<T> {
     private Boolean isSuccess;
     private String code;
     private String message;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private T result;
 
     public static <T> ApiResponse<T> onSuccess(T result){

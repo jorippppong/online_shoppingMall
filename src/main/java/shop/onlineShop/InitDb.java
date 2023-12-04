@@ -3,7 +3,7 @@ package shop.onlineShop;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import shop.onlineShop.domain.*;
+import shop.onlineShop.domain.entity.*;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;

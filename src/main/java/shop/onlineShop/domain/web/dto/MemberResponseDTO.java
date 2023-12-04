@@ -1,4 +1,4 @@
-package shop.onlineShop.web.dto;
+package shop.onlineShop.domain.web.dto;
 
 import lombok.Builder;
 

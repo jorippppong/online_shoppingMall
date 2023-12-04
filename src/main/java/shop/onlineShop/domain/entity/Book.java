@@ -1,4 +1,4 @@
-package shop.onlineShop.domain;
+package shop.onlineShop.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 
 @Entity
 @Getter @Setter
-@DiscriminatorValue("A")
-public class Album extends Item{
-    private String artist;
-    private String etc;
+@DiscriminatorValue("B")
+public class Book extends Item{
+    private String author;
+    private String isbn;
 }

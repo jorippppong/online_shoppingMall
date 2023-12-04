@@ -1,9 +1,9 @@
-package shop.onlineShop.web.converter;
+package shop.onlineShop.domain.web.converter;
 
-import shop.onlineShop.domain.Address;
-import shop.onlineShop.domain.Member;
-import shop.onlineShop.web.dto.MemberRequestDTO;
-import shop.onlineShop.web.dto.MemberResponseDTO;
+import shop.onlineShop.domain.entity.Address;
+import shop.onlineShop.domain.entity.Member;
+import shop.onlineShop.domain.web.dto.MemberResponseDTO;
+import shop.onlineShop.domain.web.dto.MemberRequestDTO;
 
 public class MemberConverter {
     public static Member memberRequestConverter(MemberRequestDTO memberRequestDTO){

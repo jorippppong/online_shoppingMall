@@ -1,4 +1,4 @@
-package shop.onlineShop.domain;
+package shop.onlineShop.domain.entity;
 
 public enum DeliveryStatus {
     READY, COMP

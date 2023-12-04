@@ -1,5 +1,6 @@
 package shop.onlineShop.domain.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,8 +9,8 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

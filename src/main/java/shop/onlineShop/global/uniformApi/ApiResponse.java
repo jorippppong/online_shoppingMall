@@ -3,9 +3,11 @@ package shop.onlineShop.global.uniformApi;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import static shop.onlineShop.global.uniformApi.SuccessStatus._OK;
 
+@Getter
 @AllArgsConstructor
 @JsonPropertyOrder({"isSuccess", "code", "message", "result"})
 public class ApiResponse<T> {

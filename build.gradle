@@ -26,17 +26,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'mysql:mysql-connector-java:8.0.32'
-	implementation 'org.springframework.boot:spring-boot-starter-security'// 스프링 시큐리티
+	testImplementation 'junit:junit:4.13.1'
+	//implementation 'org.springframework.boot:spring-boot-starter-security'// 스프링 시큐리티
 	runtimeOnly 'mysql:mysql-connector-java'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test' // 스프링 시큐리티 테스트
+	//testImplementation 'org.springframework.security:spring-security-test' // 스프링 시큐리티 테스트
 
 	// JWT
-	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
-	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
-	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+//	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+//	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+//	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
 }
 
 tasks.named('test') {

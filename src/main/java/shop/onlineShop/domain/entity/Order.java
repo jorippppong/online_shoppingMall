@@ -1,6 +1,8 @@
 package shop.onlineShop.domain.entity;
 
 import lombok.*;
+import shop.onlineShop.global.exception.CustomException;
+import shop.onlineShop.global.uniformApi.ErrorStatus;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -58,4 +60,28 @@ public class Order {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
+
+    //비즈니스 로직
+    //주문 취소
+    public void cancel(){
+        if(delivery.getStatus() == DeliveryStatus.COMP){
+            //TODO : 이미 배송 완료된 상품은 최소 불가능 합니다.
+            throw new CustomException(ErrorStatus._INTERNAL_SERVER_ERROR);
+        }
+
+        this.setStatus(OrderStatus.CANCEL);
+        for(OrderItem orderItem: this.orderItems){
+            orderItem.cancel();
+        }
+    }
+
+    //전체 주문 가격 조회
+    public int getTotalPrice(){
+        int totalPrice = 0;
+        for(OrderItem orderItem : this.orderItems){
+            totalPrice += orderItem.getTotalPrice();
+        }
+        return totalPrice;
+    }
+
 }

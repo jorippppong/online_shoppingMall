@@ -31,4 +31,13 @@ public class OrderItem {
         item.removeStock(count);
         return orderItem;
     }
+
+    public void cancel() {
+        getItem().addStock(count);
+    }
+
+    //전체 가격 조회
+    public int getTotalPrice() {
+        return getOrderPrice() * getCount();
+    }
 }

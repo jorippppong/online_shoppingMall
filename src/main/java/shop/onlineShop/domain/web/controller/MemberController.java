@@ -1,60 +1,50 @@
-package shop.onlineShop.domain.web.controller;
+package jpabook.jpashop.web;
 
+import jpabook.jpashop.domain.Address;
+import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-import shop.onlineShop.domain.entity.Member;
-import shop.onlineShop.domain.service.MemberService;
-import shop.onlineShop.domain.web.converter.MemberConverter;
-import shop.onlineShop.domain.web.dto.MemberRequest;
-import shop.onlineShop.domain.web.dto.MemberResponse;
-import shop.onlineShop.global.uniformApi.ApiResponse;
-
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import javax.validation.Valid;
 import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
-@RequestMapping("/members")
 public class MemberController {
+
     private final MemberService memberService;
 
-    //1. 회원 가입
-    @PostMapping()
-    public ApiResponse<Object> addMember(
-            @RequestBody MemberRequest.MemberRequestDTO memberRequestDTO
-            ){
-        return ApiResponse.onSuccess(memberService.addMember(memberRequestDTO));
+    @GetMapping(value = "/members/new")
+    public String createForm(Model model) {
+        model.addAttribute("memberForm", new MemberForm());
+        return "members/createMemberForm";
     }
 
-    //2-1. 회원 단건 조회
-    @GetMapping("/{memberId}")
-    public ApiResponse<MemberResponse.MemberResponseDTO> getMember(
-            @PathVariable Long memberId
-    ){
-        return ApiResponse.onSuccess(memberService.findOneMember(memberId));
+    @PostMapping(value = "/members/new")
+    public String create(@Valid MemberForm form, BindingResult result) {
+        if (result.hasErrors()) {
+            return "members/createMemberForm";
+        }
+
+        Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
+        Member member = new Member();
+        member.setName(form.getName());
+        member.setAddress(address);
+
+        memberService.join(member);
+
+        return "redirect:/";
     }
 
-    //2-2. 회원 전체 조회
-    @GetMapping()
-    public ApiResponse<List<MemberResponse.MemberNameResponseDTO>> getAllMembers(){
-        List<Member> findMembers = memberService.findAllMembers();
-        return ApiResponse.onSuccess(MemberConverter.memberNameResponseDTOList(findMembers));
-    }
-
-    //3. 회원 수정
-    @PutMapping("/{memberId}")
-    public ApiResponse<MemberResponse.MemberResponseDTO> updateMember(
-            @PathVariable Long memberId,
-            @RequestBody MemberRequest.MemberRequestDTO memberRequestDTO
-    ){
-        return ApiResponse.onSuccess(memberService.updateMember(memberId, memberRequestDTO));
-    }
-
-    //4. 회원 삭제
-    @DeleteMapping("/{memberId}")
-    public ApiResponse<Object> deleteMember(
-            @PathVariable Long memberId
-    ){
-        memberService.deleteMember(memberId);
-        return ApiResponse.onSuccess(null);
+    //추가
+    @GetMapping(value = "/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 }

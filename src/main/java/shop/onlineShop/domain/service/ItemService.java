@@ -3,13 +3,11 @@ package shop.onlineShop.domain.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.thymeleaf.templateresolver.ITemplateResolver;
 import shop.onlineShop.domain.entity.Item;
 import shop.onlineShop.domain.repository.ItemRepository;
 import shop.onlineShop.global.exception.CustomException;
 import shop.onlineShop.global.uniformApi.ErrorStatus;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 

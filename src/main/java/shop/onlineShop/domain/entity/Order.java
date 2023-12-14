@@ -61,7 +61,6 @@ public class Order {
         delivery.setOrder(this);
     }
 
-    //비즈니스 로직
     //주문 취소
     public void cancel(){
         if(delivery.getStatus() == DeliveryStatus.COMP){

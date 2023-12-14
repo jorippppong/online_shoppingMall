@@ -10,7 +10,6 @@ import shop.onlineShop.domain.repository.OrderRepository;
 import shop.onlineShop.global.exception.CustomException;
 import shop.onlineShop.global.uniformApi.ErrorStatus;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,12 +19,12 @@ public class OrderService {
     private final MemberRepository memberRepository;
     private final ItemRepository itemRepository;
 
-    //1) 주문
+    //1) 주문 생성
     @Transactional
-    public Long order(Long memberId, Long itemId, int count){
+    public Long createOrder(Long memberId, Long itemId, int count){
         //엔티티 조회
-        Member member = new Member();
-        Item item = new Item();
+        Member member;
+        Item item;
         Optional<Member> optionalMember = memberRepository.findById(memberId);
         if(optionalMember.isEmpty()){
             throw new CustomException(ErrorStatus.MEMBER_NOT_FOUND);
